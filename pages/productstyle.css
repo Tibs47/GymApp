@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+*{
+    font-family: "Lato";
+}
+body{
+    padding: 0;
+    margin: 0;
+    background-color: white;
+}
+header{
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 5px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+}
+.navList{
+    margin: 10px 30%;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.navList li a{
+    transition: 1s;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+.navList li a:hover{
+    color: grey;
+}
+#modelBox{
+    width: 100%;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.4);
+    background-color: #c3c3c37e;
+}
+#model{
+    width: 100%;
+    height: 500px;
+}
+#mid{
+    width: 90%;
+    margin: 3% auto;
+    padding: 2%;
+    font-size: 25px;
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+}
+#details{
+    width: 35%;
+    text-align: center;
+}
+#buy{
+    width: 15%;
+    text-align: center;
+}
+div#linija{
+    margin: 20px auto;
+    width: 80%;
+    border-top: solid rgba(156, 156, 156, 0.397);
+}
+.dets{
+    margin: 0 10%;
+    text-align: left;
+}
+/* Slideshow container */
+.slide-box{
+    width: 50%;
+}
+.slideshow-container {
+    width: 100%;
+    position: relative;
+    margin: auto;
+}
+.mySlides {
+    display: none;
+}
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+.active, .dot:hover {
+    background-color: #717171;
+}
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+.timg{
+    width: 100%;
+}
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+/* Slideshow container */
+@media screen and (max-width: 1400px) {
+    .navList{
+        flex-direction: column;
+    }
+    .navList li{
+        margin: 7px auto;
+    }
+    #model{
+        height: 500px;
+    }
+    #mid{
+        width: 80%;
+        margin: 4% auto;
+        padding: 2%;
+        font-size: 25px;
+        background-color: rgba(0, 0, 0, 0.05);
+        box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
+        text-align: center;
+        display: block;
+    }
+    #details{
+        width: 100%;
+        text-align: center;
+    }
+    #buy{
+        width: 100%;
+        text-align: center;
+    }
+    div#linija{
+        margin: 20px auto;
+        width: 80%;
+        border-top: solid rgba(156, 156, 156, 0.397);
+    }
+    /* Slideshow container */
+    .slide-box{
+        width: 100%;
+    }
+    .slideshow-container {
+        width: 100%;
+        position: relative;
+        margin: auto;
+    }
+    .prev{
+        left: 0;
+    }
+}
