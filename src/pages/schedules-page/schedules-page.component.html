@@ -1,0 +1,9 @@
+<div class="hi"> Hi, {{name}} </div>
+
+<div class="navigation">
+    <div [ngClass]="{'lineL': !lineSwitch, 'lineR': lineSwitch}"></div>
+    <div class="flexNavigation">
+        <div (click)="lineSwitcher(false)">My Schedules</div>
+        <div (click)="lineSwitcher(true)">New Schedules</div>
+    </div>
+</div>

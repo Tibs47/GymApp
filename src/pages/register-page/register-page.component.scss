@@ -1,0 +1,87 @@
+.logoContainer {
+    margin: 5% auto;
+    padding: 0;
+
+    width: 40%;
+
+    color: white;
+}
+
+.logo {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+}
+
+.userCredsContainer {
+    margin: 0 auto;
+    margin-bottom: 10%;
+    padding: 5% 0;
+    border-radius: 3px;
+
+    width: 90%;
+
+    background-color: #A11217;
+}
+
+.loginForm {
+    display: block;
+    overflow: auto;
+
+    margin: 0;
+    padding: 0;
+}
+
+.credsInput {
+    display: block;
+    overflow: auto;
+
+    margin: 6% auto;
+    padding: 0 5%;
+    border: none;
+    border-radius: 2px;
+
+    width: 70%;
+    height: 40px;
+
+    font-size: 16px;
+
+    box-shadow: 1px 3px 2px rgba($color: #535353, $alpha: 0.4);
+}
+
+.credsInput:focus {
+    border: none;
+    outline: none;
+}
+
+.loginButtons {
+    display: block;
+
+    margin: 6% auto;
+    padding: 2% 0;
+    border: none;
+    border-radius: 2px;
+
+    width: 50%;
+
+    background-color: #000000;
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+
+    box-shadow: 1px 3px 2px rgba($color: #535353, $alpha: 0.4);
+    transition: 200ms;
+}
+
+.loginButtons:hover {
+    background-color: #535353;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.loginButtons:active {
+    box-shadow: none;
+    transition: 200ms;
+}
