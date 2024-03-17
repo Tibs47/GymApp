@@ -1,9 +1,13 @@
 <div class="hi"> Hi, {{name}} </div>
 
+<div class="scheduleContainer">
+    <app-schedule></app-schedule>
+</div>
+
 <div class="navigation">
     <div [ngClass]="{'lineL': !lineSwitch, 'lineR': lineSwitch}"></div>
     <div class="flexNavigation">
-        <div (click)="lineSwitcher(false)">My Schedules</div>
-        <div (click)="lineSwitcher(true)">New Schedules</div>
+        <div class="navButtons" (click)="lineSwitcher(false)">My Schedules</div>
+        <div class="navButtons" (click)="lineSwitcher(true)">New Schedules</div>
     </div>
 </div>

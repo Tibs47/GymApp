@@ -1,1 +1,20 @@
-<p>schedule works!</p>
+<div *ngFor="let schedule of schedules" class="schedule">
+    <div class="day">{{ schedule.day }}</div>
+    <div class="flexSchedule">
+        <div class="info">
+            <div class="time">{{ schedule.time }}</div>
+            <div class="description">
+                <div>Status: {{ schedule.status }}</div>
+            </div>
+        </div>
+        <div class="coachInfo">
+            <div class="coachName">
+                <div>Coach</div>
+                <div>{{ schedule.coach }}</div>
+            </div>
+            <div class="coachImgContainer">
+                <img class="coachImg" [src]="schedule.img" alt="">
+            </div>
+        </div>
+    </div>
+</div>

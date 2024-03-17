@@ -6,5 +6,6 @@ import { SchedulesPageComponent } from '../pages/schedules-page/schedules-page.c
 export const routes: Routes = [
     { path: 'login', component: LoginPageComponent, title: 'Fit Arena Login' },
     { path: 'register', component: RegisterPageComponent, title: 'Fit Arena Register' },
-    { path: 'schedules', component: SchedulesPageComponent, title: 'Fit Arena Schedules' },
+    { path: 'schedules', component: SchedulesPageComponent, title: 'My Schedules' },
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

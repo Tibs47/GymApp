@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ScheduleComponent } from "../../components/schedule/schedule.component";
 
 @Component({
-  selector: 'app-schedules-page',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './schedules-page.component.html',
-  styleUrl: './schedules-page.component.scss'
+    selector: 'app-schedules-page',
+    standalone: true,
+    templateUrl: './schedules-page.component.html',
+    styleUrl: './schedules-page.component.scss',
+    imports: [CommonModule, ScheduleComponent]
 })
 export class SchedulesPageComponent {
   public name: string = 'Tibor';
