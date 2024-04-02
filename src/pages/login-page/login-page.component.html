@@ -3,10 +3,10 @@
 </div>
 <div class="userCredsContainer">
     <div class="loginForm" action="">
-        <input type="email" class="credsInput" name="email" placeholder="Email">
-        <input style="margin-bottom: 10%;" type="password" class="credsInput" name="password" placeholder="Password">
-        <button class="loginButtons" (click)="navigate('schedules')">Login</button>
-        <button class="loginButtons" (click)="navigate('register')">Register</button>
+        <input type="email" class="credsInput" placeholder="Email" #emailInput>
+        <input style="margin-bottom: 10%;" type="password" class="credsInput" placeholder="Password" #passwordInput>
+        <button class="loginButtons" (click)="login()">Login</button>
+        <button class="loginButtons" (click)="navigationService.navigate('register')">Register</button>
     </div>
 </div>
 <div class="logoContainer">

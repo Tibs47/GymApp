@@ -3,13 +3,13 @@
 </div>
 <div class="userCredsContainer">
     <div class="loginForm" action="">
-        <input type="email" class="credsInput" name="email" placeholder="Email">
-        <input type="password" class="credsInput" name="password" placeholder="Password">
-        <input style="margin-bottom: 10%;" type="password" class="credsInput" name="password" placeholder="Repeat password">
+        <input type="email" class="credsInput" id="email" placeholder="Email" #emailInput>
+        <input type="password" class="credsInput" id="password" placeholder="Password" #passwordInput>             
+        <input type="password" class="credsInput" placeholder="Repeat password" #repeatPassword style="margin-bottom: 10%;">
         <button class="loginButtons" (click)="signUp()">Register</button>
-        <button class="loginButtons" (click)="navigate('login')">Back to login</button>
+        <button class="loginButtons" (click)="navigationService.navigate('login')">Back to login</button>
     </div>
 </div>
-<div class="logoContainer">
+<div class="logoContainer" (click)="navigationService.navigate('info', 'registered')">
     <img class="logo" src="../assets/img/dumbell.png" alt="dumbell">
 </div>

@@ -26,41 +26,6 @@ export class ScheduleComponent {
       img: '../../assets/img/panda.png'
     },
     {
-      day: 'Monday',
-      time: '13:00 - 14:00',
-      status: 1,
-      coach: 'Panda',
-      img: '../../assets/img/panda.png'
-    },
-    {
-      day: 'Tuesday',
-      time: '19:00 - 20:00',
-      status: 2,
-      coach: 'Panda',
-      img: '../../assets/img/panda.png'
-    },
-    {
-      day: 'Monday',
-      time: '13:00 - 14:00',
-      status: 1,
-      coach: 'Panda',
-      img: '../../assets/img/panda.png'
-    },
-    {
-      day: 'Tuesday',
-      time: '19:00 - 20:00',
-      status: 2,
-      coach: 'Panda',
-      img: '../../assets/img/panda.png'
-    },
-    {
-      day: 'Monday',
-      time: '13:00 - 14:00',
-      status: 1,
-      coach: 'Panda',
-      img: '../../assets/img/panda.png'
-    },
-    {
       day: 'Tuesday',
       time: '19:00 - 20:00',
       status: 2,
