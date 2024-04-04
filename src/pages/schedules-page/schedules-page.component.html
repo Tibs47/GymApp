@@ -1,8 +1,15 @@
-<div class="hi"> Hi, {{name}} </div>
-<div class="hi" (click)="logOut()"> Logout </div>
+<div class="flexHeader">
+    <div class="logOutSpacer"><img (click)="logOut()" src="../../assets/svg/logout.svg" alt="logOut"></div>
+    <div class="hi"> Hi {{name}} </div>
+    <div class="logOutSpacer"><img (click)="navigationService.navigate('settings')" src="../../assets/svg/settings.svg" alt="settings"></div>
+</div>
 
-<div class="scheduleContainer">
+<div [ngClass]="{'scheduleContainer': !lineSwitch, 'hidden': lineSwitch}">
     <app-schedule></app-schedule>
+</div>
+
+<div [ngClass]="{'hidden': !lineSwitch, 'newScheduleContainer': lineSwitch}">
+    <app-new-schedule></app-new-schedule>
 </div>
 
 <div class="navigation">

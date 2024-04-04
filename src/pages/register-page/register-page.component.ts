@@ -1,5 +1,4 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
 import { supabase } from '../../supabase';
 import { NavigationService } from '../../services/navigation.service';
 
@@ -12,7 +11,6 @@ import { NavigationService } from '../../services/navigation.service';
 })
 export class RegisterPageComponent {
   constructor(
-    private router: Router,
     public navigationService: NavigationService,
   ) { }
 

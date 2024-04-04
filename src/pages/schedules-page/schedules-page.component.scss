@@ -1,12 +1,29 @@
-.hi {
-    margin: 0 auto;
-    padding: 5%;
+* {
+    cursor: default;
+}
 
-    width: fit-content;
+.flexHeader {
+    display: flex;
+    .hi {
+        margin: 0 auto;
+        padding: 5%;
+    
+        width: fit-content;
+    
+        color: white;
+        font-size: 32px;
+        font-weight: 800;
+    }
+    .logOutSpacer {
+        padding: 5% 0;
+        width: 15%;
 
-    color: white;
-    font-size: 32px;
-    font-weight: 800;
+        text-align: center;
+        img {
+            height: 100%;
+            cursor: pointer;
+        }
+    }
 }
 
 .scheduleContainer {
@@ -14,6 +31,17 @@
     padding: 5% 0 20% 0;
 
     width: 90%;
+}
+
+.newScheduleContainer {
+    margin: 0 auto;
+    padding: 5% 0 20% 0;
+    color: white;
+    width: 90%;
+}
+
+.hidden {
+    display: none;
 }
 
 .navigation {
@@ -49,8 +77,8 @@
         text-shadow: 2px 1px 2px #0000004f;
 
         .navButtons {
-            padding: 5% 0;
-
+            height: 7vh;
+            line-height: 7vh;
             color: white;
             font-size: 22px;
             font-weight: 600;

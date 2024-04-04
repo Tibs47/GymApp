@@ -1,15 +1,29 @@
-.logoContainer {
-    margin: 5% auto;
-    padding: 0;
-
-    width: 40%;
-
-    color: white;
-    .logo {
-        margin: 0;
+.flexHeader {
+    display: flex;
+    .logoContainer {
+        margin: 5% auto;
         padding: 0;
     
-        width: 100%;
+        width: 40%;
+    
+        color: white;
+        .logo {
+            margin: 0;
+            padding: 0;
+        
+            width: 100%;
+        }
+    }
+    .logOutSpacer {
+        padding: 5% 0;
+        width: 15%;
+
+        text-align: center;
+        img {
+            max-width: 100%;
+            height: 15%;
+            cursor: pointer;
+        }
     }
 }
 
@@ -24,15 +38,7 @@
     background-color: #A11217;
 }
 
-.loginForm {
-    display: block;
-    overflow: auto;
-
-    margin: 0;
-    padding: 0;
-}
-
-.credsInput {
+.userInfo {
     display: block;
     overflow: auto;
 
@@ -49,12 +55,12 @@
     box-shadow: 1px 3px 2px rgba($color: #535353, $alpha: 0.4);
 }
 
-.credsInput:focus {
+.userInfo:focus {
     border: none;
     outline: none;
 }
 
-.loginButtons {
+.updateInfoButton {
     display: block;
 
     margin: 6% auto;
@@ -68,19 +74,18 @@
     color: white;
     font-size: 22px;
     font-weight: 800;
-    text-align: center;
 
     box-shadow: 1px 3px 2px rgba($color: #535353, $alpha: 0.4);
     transition: 200ms;
 }
 
-.loginButtons:hover {
+.updateInfoButton:hover {
     background-color: #535353;
     cursor: pointer;
     transition: 200ms;
 }
 
-.loginButtons:active {
+.updateInfoButton:active {
     box-shadow: none;
     transition: 200ms;
 }

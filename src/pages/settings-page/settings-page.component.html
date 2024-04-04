@@ -1,0 +1,12 @@
+<div class="flexHeader">
+    <div class="logOutSpacer"><img (click)="navigationService.navigate('schedules')" src="../../assets/svg/back.svg" alt="back"></div>
+    <div class="logoContainer">
+        <img class="logo" src="../assets/img/logo.png" alt="logo">
+    </div>
+    <div class="logOutSpacer"></div>
+</div>
+<div class="userCredsContainer">
+    <input type="text" class="userInfo" value={{name}} placeholder="First name" #nameInput>
+    <input type="text" class="userInfo" value={{lastName}} placeholder="Last name" #lastNameInput>
+    <button class="updateInfoButton" (click)="updateInfo()">Update info</button>
+</div>

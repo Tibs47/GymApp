@@ -5,13 +5,12 @@
     width: 40%;
 
     color: white;
-}
-
-.logo {
-    margin: 0;
-    padding: 0;
-
-    width: 100%;
+    .logo {
+        margin: 0;
+        padding: 0;
+    
+        width: 100%;
+    }
 }
 
 p {
@@ -19,5 +18,36 @@ p {
     width: 80%;
     text-align: center;
     margin: 20px auto;
+    font-size: 22px;
     font-weight: 500;
+}
+
+.loginButtons {
+    display: block;
+
+    margin: 6% auto;
+    padding: 2% 0;
+    border: none;
+    border-radius: 2px;
+
+    width: 50%;
+
+    background-color: #A11217;
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+
+    transition: 200ms;
+}
+
+.loginButtons:hover {
+    background-color: #535353;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.loginButtons:active {
+    box-shadow: none;
+    transition: 200ms;
 }

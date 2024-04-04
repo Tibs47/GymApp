@@ -1,5 +1,4 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { supabase } from '../../supabase';
 import { NavigationService } from '../../services/navigation.service';
@@ -7,15 +6,16 @@ import { NavigationService } from '../../services/navigation.service';
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [CommonModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
 })
 export class LoginPageComponent {
   rows: any[] = [];
+  email: string = '';
+  password: string = '';
 
   constructor(
-    private router: Router,
     public navigationService: NavigationService,
   ) { }
 
@@ -31,9 +31,6 @@ export class LoginPageComponent {
       console.log('Not authenticated:', error);
     }
   }
-
-  email: string = '';
-  password: string = '';
 
   @ViewChild('emailInput') emailInput!: ElementRef<HTMLInputElement>;
   @ViewChild('passwordInput') passwordInput!: ElementRef<HTMLInputElement>;

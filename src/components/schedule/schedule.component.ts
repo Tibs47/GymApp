@@ -25,12 +25,5 @@ export class ScheduleComponent {
       coach: 'Panda',
       img: '../../assets/img/panda.png'
     },
-    {
-      day: 'Tuesday',
-      time: '19:00 - 20:00',
-      status: 2,
-      coach: 'Panda',
-      img: '../../assets/img/panda.png'
-    },
   ];
 }
