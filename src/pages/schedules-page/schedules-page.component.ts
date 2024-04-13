@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ScheduleComponent } from "../../components/schedule/schedule.component";
 import { supabase } from '../../supabase';
 import { NavigationService } from '../../services/navigation.service';
 import { NewScheduleComponent } from '../../components/new-schedule/new-schedule.component';
+import { ScheduleComponent } from '../../components/schedule/schedule.component';
 
 @Component({
     selector: 'app-schedules-page',
@@ -13,9 +13,9 @@ import { NewScheduleComponent } from '../../components/new-schedule/new-schedule
     imports: [CommonModule, ScheduleComponent, NewScheduleComponent]
 })
 export class SchedulesPageComponent {
-
   public name: string = '';
-  public lineSwitch: boolean = false;
+  public lineSwitch: boolean = true; //change to false
+  public reload: boolean = false;
 
   constructor(
     public navigationService: NavigationService,
@@ -24,19 +24,24 @@ export class SchedulesPageComponent {
   ngOnInit(): void {
     this.getUser();
   }
+  
+  async reloadSchedule() {
+    setTimeout(() => {
+      this.reload = false;
+    }, 100);
+    this.reload = true;
+    //ovo je ok ali bi bilo bolje kada se napravi insert samo sloziti reload nekako
+  }
 
   async getUser() {
     const { data: { user } } = await supabase.auth.getUser();
-    console.log(user);
     const userId: string = user?.id || 'unknown';
-    console.log(userId);
 
     let { data: profiles, error } = await supabase
     .from('profiles')
     .select('first_name')
     .eq('id', userId);
- 
-    console.log(profiles);
+
     this.name = profiles?.[0]?.first_name || null;
 
     if (!this.name) {
@@ -48,6 +53,7 @@ export class SchedulesPageComponent {
     if (side) {
       this.lineSwitch = true;
     } else {
+      this.reloadSchedule();
       this.lineSwitch = false;
     }
   }

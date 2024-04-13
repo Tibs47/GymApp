@@ -6,7 +6,9 @@
     <div class="logOutSpacer"></div>
 </div>
 <div class="userCredsContainer">
+    <p class="message">What should we call you?</p>
     <input type="text" class="userInfo" value={{name}} placeholder="First name" #nameInput>
     <input type="text" class="userInfo" value={{lastName}} placeholder="Last name" #lastNameInput>
-    <button class="updateInfoButton" (click)="updateInfo()">Update info</button>
+    <button class="updateInfoButton" [disabled]="disableButton" (click)="updateInfo()">Save info</button>
+    <p *ngIf="showMessage" class="message">{{ message }}</p>
 </div>

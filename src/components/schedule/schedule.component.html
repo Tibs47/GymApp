@@ -1,19 +1,20 @@
 <div *ngFor="let schedule of schedules" class="schedule">
-    <div class="day">{{ schedule.day }}</div>
+    <div class="day">{{ schedule.startTime | date:'EEEE' }}</div>
     <div class="flexSchedule">
         <div class="info">
-            <div class="time">{{ schedule.time }}</div>
+            <div class="time">{{ schedule.startTime | date:'HH:mm' }} - {{ schedule.endTime | date:'HH:mm' }}</div>
             <div class="description">
-                <div>Status: {{ schedule.status }}</div>
+                <div>Status: {{ getStatus(schedule.confirmed) }}</div>
+                <button (click)="deleteSchedule(schedule.scheduleID)">Delete</button>
             </div>
         </div>
         <div class="coachInfo">
             <div class="coachName">
                 <div>Coach</div>
-                <div>{{ schedule.coach }}</div>
+                <div>{{ getCoachName(schedule.coachID) }}</div>
             </div>
             <div class="coachImgContainer">
-                <img class="coachImg" [src]="schedule.img" alt="">
+                <img class="coachImg" [src]="getImg(schedule.coachID)" alt="">
             </div>
         </div>
     </div>

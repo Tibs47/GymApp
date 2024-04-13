@@ -5,7 +5,7 @@
 </div>
 
 <div [ngClass]="{'scheduleContainer': !lineSwitch, 'hidden': lineSwitch}">
-    <app-schedule></app-schedule>
+    <app-schedule *ngIf="!reload"></app-schedule>
 </div>
 
 <div [ngClass]="{'hidden': !lineSwitch, 'newScheduleContainer': lineSwitch}">
