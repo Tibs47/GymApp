@@ -1,14 +1,27 @@
 <div class="flexHeader">
+    <div class="logOutSpacer"><img (click)="logOut()" src="../../assets/svg/logout.svg" alt="logOut"></div>
+    <div class="hi"> Settings </div>
     <div class="logOutSpacer"><img (click)="navigationService.navigate('schedules')" src="../../assets/svg/back.svg" alt="back"></div>
-    <div class="logoContainer">
-        <img class="logo" src="../assets/img/logo.png" alt="logo">
-    </div>
-    <div class="logOutSpacer"></div>
 </div>
 <div class="userCredsContainer">
     <p class="message">What should we call you?</p>
     <input type="text" class="userInfo" value={{name}} placeholder="First name" #nameInput>
     <input type="text" class="userInfo" value={{lastName}} placeholder="Last name" #lastNameInput>
-    <button class="updateInfoButton" [disabled]="disableButton" (click)="updateInfo()">Save info</button>
+    <button class="saveInfoButton" [disabled]="disableButton" (click)="saveInfo()">Save info</button>
     <p *ngIf="showMessage" class="message">{{ message }}</p>
+</div>
+<div class="userCredsContainer" *ngIf="accepted === null">
+    <p class="coachName">{{coachNames[currentIndex]}}</p>
+    <div class="carousel">
+        <img [src]="images[currentIndex]" class="active">
+        <button class="prev" (click)="nextCoach()">&#10094;</button>
+        <button class="next" (click)="prevCoach()">&#10095;</button>
+    </div>      
+    <button class="saveInfoButton" (click)="setCoach()">Send request</button>
+</div>
+<div class="userCredsContainer" *ngIf="accepted === false">
+    <p class="message">Waiting for {{coachNames[currentIndex]}} to confirm...</p>
+</div>
+<div class="userCredsContainer" *ngIf="accepted === true">
+    <p class="message">Your coach is {{coachNames[currentIndex]}}</p>
 </div>

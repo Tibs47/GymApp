@@ -14,4 +14,10 @@ export interface Profile {
     last_name: string,
     coach_ID: number,
     role: string,
+    accepted: boolean | null;
+}
+
+export interface User {
+    email: string,
+    id: string,
 }

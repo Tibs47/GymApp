@@ -41,6 +41,10 @@ export class NewScheduleComponent {
       },
     ])
     .select()
-    console.log(error);
+    if (error) {
+      console.log(error);
+    } else {
+      window.location.reload();
+    }
   }
 }

@@ -14,8 +14,7 @@ import { ScheduleComponent } from '../../components/schedule/schedule.component'
 })
 export class SchedulesPageComponent {
   public name: string = '';
-  public lineSwitch: boolean = true; //change to false
-  public reload: boolean = false;
+  public lineSwitch: boolean = false; //change to false
 
   constructor(
     public navigationService: NavigationService,
@@ -23,14 +22,6 @@ export class SchedulesPageComponent {
 
   ngOnInit(): void {
     this.getUser();
-  }
-  
-  async reloadSchedule() {
-    setTimeout(() => {
-      this.reload = false;
-    }, 100);
-    this.reload = true;
-    //ovo je ok ali bi bilo bolje kada se napravi insert samo sloziti reload nekako
   }
 
   async getUser() {
@@ -44,7 +35,9 @@ export class SchedulesPageComponent {
 
     this.name = profiles?.[0]?.first_name || null;
 
-    if (!this.name) {
+    
+    console.log(profiles);
+    if (profiles?.length === 0) {
       this.navigationService.navigate('settings');
     }
   }
@@ -53,7 +46,6 @@ export class SchedulesPageComponent {
     if (side) {
       this.lineSwitch = true;
     } else {
-      this.reloadSchedule();
       this.lineSwitch = false;
     }
   }
