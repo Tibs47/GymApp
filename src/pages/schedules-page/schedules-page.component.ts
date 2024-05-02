@@ -14,7 +14,7 @@ import { ScheduleComponent } from '../../components/schedule/schedule.component'
 })
 export class SchedulesPageComponent {
   public name: string = '';
-  public lineSwitch: boolean = false; //change to false
+  public lineSwitch: boolean = true; //change to false
 
   constructor(
     public navigationService: NavigationService,

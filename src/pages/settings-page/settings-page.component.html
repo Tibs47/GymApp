@@ -10,7 +10,7 @@
     <button class="saveInfoButton" [disabled]="disableButton" (click)="saveInfo()">Save info</button>
     <p *ngIf="showMessage" class="message">{{ message }}</p>
 </div>
-<div class="userCredsContainer" *ngIf="accepted === null">
+<div class="userCredsContainer" *ngIf="accepted === null && role === 'user'">
     <p class="coachName">{{coachNames[currentIndex]}}</p>
     <div class="carousel">
         <img [src]="images[currentIndex]" class="active">
@@ -19,9 +19,9 @@
     </div>      
     <button class="saveInfoButton" (click)="setCoach()">Send request</button>
 </div>
-<div class="userCredsContainer" *ngIf="accepted === false">
+<div class="userCredsContainer" *ngIf="accepted === false && role === 'user'">
     <p class="message">Waiting for {{coachNames[currentIndex]}} to confirm...</p>
 </div>
-<div class="userCredsContainer" *ngIf="accepted === true">
+<div class="userCredsContainer" *ngIf="accepted === true && role === 'user'">
     <p class="message">Your coach is {{coachNames[currentIndex]}}</p>
 </div>

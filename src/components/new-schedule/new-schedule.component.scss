@@ -1,0 +1,88 @@
+div.confirm {
+    margin: 3% auto;
+    width: 60%;
+    padding: 2%;
+    height: 20px;
+    line-height: 20px;
+    border: solid white 1px;
+    border-radius: 5px;
+    color: black;
+    background-color: white;
+    text-align: center;
+    font-weight: 500;
+}
+
+.timer {
+    width: 90%;
+    margin: 0 auto;
+    padding: 2% 0;
+    background-color: #A11217;
+    border-radius: 5px;
+    text-align: center;
+    div.cancel {
+        margin: 2% auto;
+        width: 60%;
+        padding: 2%;
+        height: 20px;
+        line-height: 20px;
+        border: solid white 1px;
+        border-radius: 5px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.daySelectFlex {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 70%;
+    .dayName {
+        color: white;
+        margin: 0 5%;
+    }
+    .arrows {
+        color: white;
+        background-color: transparent;
+        border: none;
+    }
+    .arrows:hover { cursor: pointer; }
+}
+
+.flexStartEnd {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    div.textHolder1 {
+        width: 30%;
+        text-align: center;
+        padding: 2%;
+        font-weight: 500;
+        font-size: 18px;
+    }
+    div.hourHolder1 {
+        width: 30%;
+        text-align: center;
+        padding: 2%;
+        font-weight: 500;
+        font-size: 18px;
+        border: solid white 1px;
+        border-radius: 5px;
+    }
+    div.hourHolder2 {
+        width: 30%;
+        padding: 2%;
+        height: 20px;
+        line-height: 20px;
+        border: solid white 1px;
+        border-radius: 5px;
+    }
+    div.arrowHolder {
+        width: 30%;
+        img {
+            height: 100%;
+        }
+    }
+}

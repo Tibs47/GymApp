@@ -4,7 +4,6 @@ import { NavigationService } from '../../services/navigation.service';
 import { CommonModule } from '@angular/common';
 import { UserAuthService } from '../../services/user-auth.service';
 import { Profile, User } from '../../types';
-import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 @Component({
   selector: 'app-settings-page',
@@ -14,24 +13,24 @@ import { __core_private_testing_placeholder__ } from '@angular/core/testing';
   styleUrl: './settings-page.component.scss'
 })
 export class SettingsPageComponent {
+  @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('lastNameInput') lastNameInput!: ElementRef<HTMLInputElement>;
+
+  constructor(
+    public navigationService: NavigationService,
+    public userAuthService: UserAuthService,
+  ) { }
 
   public name: string = '';
   public lastName: string = '';
   public accepted: boolean | null = null;
+  public role: string | null = null;
   public userId: string = '';
   public noCreds: boolean = false;
   public message: string = '';
   public showMessage: boolean = false;
   public disableButton: boolean = false;
   public currentIndex = 0;
-  constructor(
-    public navigationService: NavigationService,
-    public userAuthService: UserAuthService,
-  ) { }
-
-  @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
-  @ViewChild('lastNameInput') lastNameInput!: ElementRef<HTMLInputElement>;
-
   public userAuth: User | undefined;
   public userProfile: Profile | string | undefined;
   public coaches: any[] | null | undefined;
@@ -51,6 +50,7 @@ export class SettingsPageComponent {
       this.name = this.userProfile?.first_name;
       this.lastName = this.userProfile?.last_name;
       this.accepted = this.userProfile?.accepted;
+      this.role = this.userProfile?.role;
     }
     this.getCoaches()
   }
