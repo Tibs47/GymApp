@@ -21,3 +21,10 @@ export interface User {
     email: string,
     id: string,
 }
+
+export interface CoachesSchedules {
+    coachTimeID: number,
+    startTime: Date,
+    endTime: Date,
+    coacchID: number,
+}

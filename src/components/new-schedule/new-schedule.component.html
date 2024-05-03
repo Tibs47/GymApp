@@ -34,6 +34,22 @@
             <div class="confirm" (click)="insertCoachSchedule()">Confirm</div>
             <div class="cancel" (click)="openTime(false)">Cancel</div>
         </div>
+        <div class="coachesSchedulesContainer" *ngFor="let cs of todaysCoachesSchedules">
+            <div class="schTime"> {{cs.startTime | date:'HH:mm'}} </div> 
+            -
+            <div class="schTime"> {{cs.endTime | date:'HH:mm'}} </div>
+            <div class="delTime" (click)="deleteCoachSchedule(cs.coachTimeID)">Delete</div>
+        </div>
+        <div class="komponentaZaVrijeme">
+            <div class="timestampContainer">
+                <div *ngFor="let time of graphTime" class="timestamp"> {{ time }} </div>
+            </div>
+            <div style="margin-top: 8px;">
+                <div [ngClass]="{'timelineWhite': color==='white', 'timelineRed': color==='red'}" *ngFor="let color of graphColor">
+                    <div>X</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

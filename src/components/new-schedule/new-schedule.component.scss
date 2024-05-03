@@ -38,15 +38,19 @@ div.confirm {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
-    width: 70%;
+    height: 30px;
+    color: white;
+    font-size: 24px;
+    line-height: 30px;
     .dayName {
-        color: white;
         margin: 0 5%;
     }
     .arrows {
         color: white;
         background-color: transparent;
         border: none;
+        font-size: 24px;
+        line-height: 30px;
     }
     .arrows:hover { cursor: pointer; }
 }
@@ -84,5 +88,53 @@ div.confirm {
         img {
             height: 100%;
         }
+        img:active {
+            filter: saturate(0%) brightness(20%);
+        }
+    }
+}
+
+.coachesSchedulesContainer {
+    justify-content: space-evenly;
+    text-align: center;
+    display: flex;
+    margin: 5% auto;
+    line-height: 30px;
+    font-size: 26px;
+    .schTime {
+        height: 30px;
+        line-height: 30px;
+        font-size: 26px;
+    }    
+    .delTime {
+        color: white;
+        background-color: #A11217;
+        padding: 0 2%;
+        border-radius: 5px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+    }
+}
+
+.komponentaZaVrijeme {
+    display: flex;
+    .timestampContainer {
+        margin-right: 2%;
+    }
+    .timestamp {
+        font-size: 12px;
+        height: 40px;
+        width: fit-content;
+    }
+    .timelineRed {
+        background-color:  #A11217;
+        height: 40px;
+        width: 100px;
+    }
+    .timelineWhite {
+        background-color: white;
+        height: 40px;
+        width: 100px;
     }
 }
