@@ -3,6 +3,7 @@ import { supabase } from '../../supabase';
 import { CommonModule, DatePipe } from '@angular/common';
 import { CoachesSchedules, Profile, User } from '../../types';
 import { UserAuthService } from '../../services/user-auth.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-new-schedule',
@@ -60,6 +61,7 @@ export class NewScheduleComponent {
   public showNewTime: boolean = false;
   public coachesSchedules: CoachesSchedules[] = [];
   public todaysCoachesSchedules: CoachesSchedules[] = [];
+  public disableInsert: boolean = false;
   
   async ngOnInit(){
     this.userAuth = await this.userAuthService.getUser();
@@ -71,7 +73,37 @@ export class NewScheduleComponent {
       this.role = this.userProfile?.role;
     }
     this.getCoachSchedules();
-    this.initTime();
+  }
+
+  public graphTime: any[] = [
+    '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00',
+    '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00',
+  ];
+
+  public graphColor: any[] = [
+    'white', 'white', 'white', 'white', 'white', 'white', 'white',
+    'white', 'white', 'white', 'white', 'white', 'white',
+  ];
+
+  public colorGraph() {
+    this.graphColor = [
+      'white', 'white', 'white', 'white', 'white', 'white', 'white',
+      'white', 'white', 'white', 'white', 'white', 'white',
+    ];
+    // console.log('Coloring with: ',this.todaysCoachesSchedules);
+    if (this.todaysCoachesSchedules.length === 0) {
+      for (let gc of this.graphColor) {
+        gc = 'white';
+      }
+    } else {
+      for (let cs of this.todaysCoachesSchedules) {
+        let a = new Date(cs.startTime).getHours();
+        let b = new Date(cs.endTime).getHours();
+        for (let i = a; i < b; i++) {
+          this.graphColor[i-9] = 'red';
+        }
+      }
+    }
   }
 
   public async getCoachSchedules() {
@@ -84,7 +116,6 @@ export class NewScheduleComponent {
       console.log('Error getting coachesSchedules...', error);
     } else {
       this.coachesSchedules = coachSchedules || [];
-      console.log(this.coachesSchedules);
     }
     for (let cs of this.coachesSchedules) {
       if (new Date(cs.startTime).getDate() === new Date(this.todaysDate).getDate() &&
@@ -94,20 +125,45 @@ export class NewScheduleComponent {
         this.todaysCoachesSchedules.push(cs);
       }
     }
+    this.colorGraph();
+  }
+
+  public openTime (open: boolean) {
+    if (open) {
+      this.showNewTime = true;
+    } else if (!open) {
+      this.showNewTime = false;
+    }
+    this.initTime();
   }
 
   public initTime(){
-    this.newStartTime.setUTCHours(this.todaysDate.getHours() + 1);
+    this.disableInsert = false;
     this.newStartTime.setMinutes(0);
     this.newStartTime.setSeconds(0);
     this.newStartTime.setMilliseconds(0);
-    this.newEndTime.setUTCHours(this.todaysDate.getHours() + 2);
     this.newEndTime.setMinutes(0);
     this.newEndTime.setSeconds(0);
     this.newEndTime.setMilliseconds(0);
+
+    const now: Date = new Date;
+    if (now.getHours() >= 9 && now.getHours() < 21 && now.getDate() === this.todaysDate.getDate()) {
+      this.newStartTime.setUTCHours(this.todaysDate.getHours() + 1);
+      this.newEndTime.setUTCHours(this.todaysDate.getHours() + 2);
+    }
+    if (now.getHours() < 9 || now.getDate() < this.todaysDate.getDate()) {
+      this.newStartTime.setUTCHours(9);
+      this.newEndTime.setUTCHours(10);
+    }
+    if (now.getHours() >= 21 && now.getDate() === this.todaysDate.getDate()) {
+      this.disableInsert = true;
+    }
   }
 
   public dayNavigaition(x: boolean): void {
+    console.log('NAV start', this.newStartTime.getDate());
+    console.log('NAV end', this.newEndTime.getDate());
+    this.openTime(false);
     this.todaysCoachesSchedules = [];
     if (x){
       if (this.todaysDate.getDate() < new Date().getDate() + 7) {
@@ -124,7 +180,7 @@ export class NewScheduleComponent {
         if (this.todaysDate.getDate() === new Date().getDate()) {
           this.newStartTime.setUTCHours(this.todaysDate.getHours() + 1);
           this.newEndTime.setUTCHours(this.todaysDate.getHours() + 2);
-        } 
+        }
         this.today = this.datePipe.transform(this.todaysDate, 'EEEE, MMM d');
       }
     }
@@ -136,14 +192,9 @@ export class NewScheduleComponent {
         this.todaysCoachesSchedules.push(cs);
       }
     }
-  }
-
-  public openTime (open: boolean) {
-    if (open) {
-      this.showNewTime = true;
-    } else if (!open) {
-      this.showNewTime = false;
-    }
+    console.log('XNAV start', this.newStartTime.getDate());
+    console.log('XNAV end', this.newEndTime.getDate());
+    this.colorGraph();
   }
 
   public setTime (position: boolean, direction: boolean) {
@@ -182,6 +233,7 @@ export class NewScheduleComponent {
   }
 
   async insertCoachSchedule() {
+    console.log('danassend', this.todaysDate.getDate());
     const { data, error } = await supabase
     .from('coachesSchedules')
     .insert([
@@ -234,12 +286,4 @@ export class NewScheduleComponent {
       window.location.reload();
     }
   }
-
-  public graphTime: any[] = [
-    '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00',
-  ];
-
-  public graphColor: any[] = [
-    'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'red',
-  ];
 }

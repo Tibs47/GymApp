@@ -9,31 +9,37 @@
 
     </div>
     <div *ngIf="role === 'coach'">
-        <div (click)="openTime(true)" class="confirm"> New schedule </div>
+        <div (click)="openTime(true)" [ngClass]="{'hidden': showNewTime, 'confirm': !showNewTime}"> New schedule </div>
         <div [ngClass]="{'hidden': !showNewTime, 'timer': showNewTime}">
-            <div class="flexStartEnd">
-                <div (click)="setTime(true, true)" class="arrowHolder">
-                    <img style="transform: rotate(90deg);" src="../../assets/svg/cornerArrow.svg" alt="">
+            <div *ngIf="!disableInsert">
+                <div class="flexStartEnd">
+                    <div (click)="setTime(true, true)" class="arrowHolder">
+                        <img style="transform: rotate(90deg);" src="../../assets/svg/cornerArrow.svg" alt="">
+                    </div>
+                    <div (click)="setTime(false, true)" class="arrowHolder">
+                        <img style="transform: rotate(90deg);" src="../../assets/svg/cornerArrow.svg" alt="">
+                    </div>
                 </div>
-                <div (click)="setTime(false, true)" class="arrowHolder">
-                    <img style="transform: rotate(90deg);" src="../../assets/svg/cornerArrow.svg" alt="">
+                <div class="flexStartEnd">
+                    <div class="hourHolder2"> {{ newStartTime.getUTCHours() }}:00 </div>
+                    <div class="hourHolder2"> {{ newEndTime.getUTCHours() }}:00 </div>
                 </div>
+                <div class="flexStartEnd">
+                    <div (click)="setTime(true, false)" class="arrowHolder">
+                        <img style="transform: rotate(-90deg);" src="../../assets/svg/cornerArrow.svg" alt="">
+                    </div>
+                    <div (click)="setTime(false, false)" class="arrowHolder">
+                        <img style="transform: rotate(-90deg);" src="../../assets/svg/cornerArrow.svg" alt="">
+                    </div>
+                </div>
+                <div class="confirm" (click)="insertCoachSchedule()">Confirm</div>
             </div>
-            <div class="flexStartEnd">
-                <div class="hourHolder2"> {{ newStartTime.getUTCHours() }}:00 </div>
-                <div class="hourHolder2"> {{ newEndTime.getUTCHours() }}:00 </div>
+            <div *ngIf="disableInsert">
+                Too late to add anything for today...
             </div>
-            <div class="flexStartEnd">
-                <div (click)="setTime(true, false)" class="arrowHolder">
-                    <img style="transform: rotate(-90deg);" src="../../assets/svg/cornerArrow.svg" alt="">
-                </div>
-                <div (click)="setTime(false, false)" class="arrowHolder">
-                    <img style="transform: rotate(-90deg);" src="../../assets/svg/cornerArrow.svg" alt="">
-                </div>
-            </div>
-            <div class="confirm" (click)="insertCoachSchedule()">Confirm</div>
-            <div class="cancel" (click)="openTime(false)">Cancel</div>
+            <div class="cancel" (click)="openTime(false)">Close</div>
         </div>
+        <hr>
         <div class="coachesSchedulesContainer" *ngFor="let cs of todaysCoachesSchedules">
             <div class="schTime"> {{cs.startTime | date:'HH:mm'}} </div> 
             -
@@ -46,7 +52,7 @@
             </div>
             <div style="margin-top: 8px;">
                 <div [ngClass]="{'timelineWhite': color==='white', 'timelineRed': color==='red'}" *ngFor="let color of graphColor">
-                    <div>X</div>
+                    <div></div>
                 </div>
             </div>
         </div>

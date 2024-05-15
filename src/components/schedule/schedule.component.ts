@@ -28,7 +28,6 @@ export class ScheduleComponent {
     .select('*')
     .eq('userID', userId);
     this.schedules = schedules || [];
-    console.log('local: ', this.schedules);
   }
 
   public async deleteSchedule (scheduleID: number) {
