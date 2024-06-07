@@ -6,7 +6,7 @@
     </div>
     <hr>
     <div *ngIf="role === 'user'">
-
+        <!--user part goes here tbd-->
     </div>
     <div *ngIf="role === 'coach'">
         <div (click)="openTime(true)" [ngClass]="{'hidden': showNewTime, 'confirm': !showNewTime}"> New schedule </div>
@@ -38,6 +38,9 @@
                 Too late to add anything for today...
             </div>
             <div class="cancel" (click)="openTime(false)">Close</div>
+            <div *ngIf="doubleInsert">
+                <div class="confirm" style="color: red;">Time is already reserved!</div>
+            </div>
         </div>
         <hr>
         <div class="coachesSchedulesContainer" *ngFor="let cs of todaysCoachesSchedules">

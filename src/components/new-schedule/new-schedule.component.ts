@@ -3,7 +3,7 @@ import { supabase } from '../../supabase';
 import { CommonModule, DatePipe } from '@angular/common';
 import { CoachesSchedules, Profile, User } from '../../types';
 import { UserAuthService } from '../../services/user-auth.service';
-import { first } from 'rxjs';
+import { first, of } from 'rxjs';
 
 @Component({
   selector: 'app-new-schedule',
@@ -62,7 +62,8 @@ export class NewScheduleComponent {
   public coachesSchedules: CoachesSchedules[] = [];
   public todaysCoachesSchedules: CoachesSchedules[] = [];
   public disableInsert: boolean = false;
-  
+  public doubleInsert: boolean = false;
+
   async ngOnInit(){
     this.userAuth = await this.userAuthService.getUser();
     this.userId = this.userAuth?.id;
@@ -161,8 +162,6 @@ export class NewScheduleComponent {
   }
 
   public dayNavigaition(x: boolean): void {
-    console.log('NAV start', this.newStartTime.getDate());
-    console.log('NAV end', this.newEndTime.getDate());
     this.openTime(false);
     this.todaysCoachesSchedules = [];
     if (x){
@@ -192,14 +191,12 @@ export class NewScheduleComponent {
         this.todaysCoachesSchedules.push(cs);
       }
     }
-    console.log('XNAV start', this.newStartTime.getDate());
-    console.log('XNAV end', this.newEndTime.getDate());
     this.colorGraph();
   }
 
   public setTime (position: boolean, direction: boolean) {
     //true=start, false=end
-    //true=gore, false=dole
+    //true=up, false=down
     //cant set lower than current time and cant set end to be earlyer than start logic
     if (position) {
       if (direction) {
@@ -232,22 +229,59 @@ export class NewScheduleComponent {
     }
   }
 
+  public enable: boolean = true;
+  async noInsert() {
+    this.enable = false;
+    this.doubleInsert = true;
+    setTimeout(() => {
+      this.doubleInsert = false;
+    }, 1500);
+  }
+
   async insertCoachSchedule() {
-    console.log('danassend', this.todaysDate.getDate());
-    const { data, error } = await supabase
-    .from('coachesSchedules')
-    .insert([
-      { 
-        startTime: this.newStartTime,
-        endTime: this.newEndTime,
-        coachID: this.coachId,
-      },
-    ])
-    .select();
-    if (error) {
-      console.log(error);
-    } else {
-      this.getCoachSchedules();
+    let indexS = 1;
+    let indexE = 1;
+    this.enable = true;
+
+    let newStartH: number = this.newStartTime.getUTCHours();
+    console.log('with new start time---------------:', newStartH, typeof(newStartH));
+    let newEndtH: number = this.newEndTime.getUTCHours();
+    console.log('with new enddd time---------------:', newEndtH, typeof(newEndtH));
+
+    this.todaysCoachesSchedules.forEach(element => {
+      let exsStartHs: number = new Date(element.startTime).getHours();
+      console.log('comparing existing start time-', indexS++, '-:', exsStartHs, typeof(exsStartHs));
+      let exsEndHs: number = new Date(element.endTime).getHours();
+      console.log('comparing existing enddd time-', indexE++, '-:', exsEndHs, typeof(exsEndHs));
+
+      if(newStartH === exsStartHs || newEndtH === exsEndHs) {
+        this.noInsert();
+      }
+      if (newStartH < exsStartHs && newEndtH > exsStartHs) {
+        this.noInsert();
+      } 
+      if (newStartH > exsStartHs && newStartH < exsEndHs) {
+        this.noInsert();
+      }
+    });
+
+    if (this.enable) {
+      const { data, error } = await supabase
+      .from('coachesSchedules')
+      .insert([
+        { 
+          startTime: this.newStartTime,
+          endTime: this.newEndTime,
+          coachID: this.coachId,
+        },
+      ])
+      .select();
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(data);
+        this.getCoachSchedules();
+      }
     }
   }
 
