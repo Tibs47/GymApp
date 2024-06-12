@@ -1,5 +1,8 @@
 This is a small web application project for scheduling using Angular and Supabase
 
+link for the app in current state
+https://tiborbicanic.xyz
+
 # GymScheduleApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.2.
